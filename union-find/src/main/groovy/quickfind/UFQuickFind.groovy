@@ -32,7 +32,7 @@ class UFQuickFind {
     }
 
     def connected(int first, int second) {
-        return objects[first] == objects[second]
+        objects[first] == objects[second]
     }
 
 

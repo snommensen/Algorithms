@@ -12,7 +12,7 @@ class UFQuickFindTest {
 
     @Before
     public void setUp() throws Exception {
-        quickFind = new UFQuickFind()
+        quickFind = new UFQuickFind(20)
     }
 
     @Test
