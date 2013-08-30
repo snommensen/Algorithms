@@ -54,6 +54,8 @@ class UFQuickUnionTest {
         quickUnion.union(first, second)
 
         assertThat(quickUnion.connected(first, second), is(true))
+        assertThat(quickUnion.connected(19, second), is(true))
+        assertThat(quickUnion.connected(first, 19), is(true))
 
         println(quickUnion)
     }

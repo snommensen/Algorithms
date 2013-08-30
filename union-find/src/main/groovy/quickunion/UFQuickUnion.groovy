@@ -22,6 +22,7 @@ class UFQuickUnion {
 
     def root(int i) {
         while (i != objects[i]) {
+            objects[i] = objects[objects[i]]
             i = objects[i]
         }
         i
@@ -34,7 +35,7 @@ class UFQuickUnion {
     }
 
     def connected(int first, int second) {
-        return root(first) == root(second)
+        root(first) == root(second)
     }
 
     @Override
