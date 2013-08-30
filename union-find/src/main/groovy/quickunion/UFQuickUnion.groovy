@@ -1,6 +1,6 @@
-package quickfind
+package quickunion
 
-class UFQuickFind {
+class UFQuickUnion {
 
     private final static int DEFAULT_SIZE = 10
 
@@ -8,7 +8,7 @@ class UFQuickFind {
 
     final int[] objects
 
-    def UFQuickFind(size) {
+    def UFQuickUnion(size) {
         this.size = size
         objects = new int[this.size]
         for (i in 0..this.size - 1) {
@@ -16,25 +16,26 @@ class UFQuickFind {
         }
     }
 
-    def UFQuickFind() {
+    def UFQuickUnion() {
         this(DEFAULT_SIZE)
     }
 
-    def union(int first, int second) {
-        int firstObject = objects[first]
-        int secondObject = objects[second]
-
-        for (i in 0..size - 1) {
-            if (objects[i] == firstObject) {
-                objects[i] = secondObject
-            }
+    def root(int i) {
+        while (i != objects[i]) {
+            i = objects[i]
         }
+        i
+    }
+
+    def union(int first, int second) {
+        int firstRoot = root(first)
+        int secondRoot = root(second)
+        objects[firstRoot] = secondRoot
     }
 
     def connected(int first, int second) {
-        return objects[first] == objects[second]
+        return root(first) == root(second)
     }
-
 
     @Override
     public String toString() {
