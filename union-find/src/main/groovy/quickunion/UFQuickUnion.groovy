@@ -7,6 +7,7 @@ class UFQuickUnion {
     final int size
 
     final int[] objects
+    final int[] noOfObjectsInTree
 
     def UFQuickUnion(size) {
         this.size = size
@@ -14,6 +15,7 @@ class UFQuickUnion {
         for (i in 0..this.size - 1) {
             objects[i] = i
         }
+        noOfObjectsInTree = new int[this.size - 1]
     }
 
     def UFQuickUnion() {
@@ -31,7 +33,13 @@ class UFQuickUnion {
     def union(int first, int second) {
         int firstRoot = root(first)
         int secondRoot = root(second)
-        objects[firstRoot] = secondRoot
+        if (noOfObjectsInTree[firstRoot] < noOfObjectsInTree[secondRoot]) {
+            objects[firstRoot] = secondRoot
+            noOfObjectsInTree[secondRoot] += noOfObjectsInTree[firstRoot]
+        } else {
+            objects[secondRoot] = firstRoot
+            noOfObjectsInTree[firstRoot] += noOfObjectsInTree[secondRoot]
+        }
     }
 
     def connected(int first, int second) {
